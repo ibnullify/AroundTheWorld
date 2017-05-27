@@ -1,6 +1,10 @@
 Player player;
 PImage map;
 ArrayList<Button> placeButtons = new ArrayList<Button>();
+String miniGame;
+boolean mainGame;
+boolean flint, syria, antarctic, china, madagascar;
+boolean areYouSure;
 
 //Flint: collect lead from water //199 197
 //Syria: transport refugees safely across map / like frogger //513 229
@@ -13,6 +17,9 @@ void setup() {
   size(900, 550);
   player = new Player();
   makePlaceButtons();
+  mainGame = true;
+  flint = syria = antarctic = china = madagascar = false;
+  areYouSure = false;
 }
 
 void makePlaceButtons() {
@@ -25,12 +32,53 @@ void makePlaceButtons() {
 
 void draw() {
   drawMap();
+  if (areYouSure) {
+    areYouSure(miniGame);
+  }
 }
 
 void mouseClicked() {
-  println(mouseX, mouseY);
-  println();
+  //for (Button button : buttons) {
+  //  if (button.active) {
+  //    if (mouseX < environment.rain.length) {
+  //      if (button.name == "Plant") {
+  //        plants.add(new Plant(mouseX, mouseY));
+  //        allPlants.add(plants.get(plants.size()-1));
+  //        print("planted");
+  //      }
+  //      if (button.name == "Bacteria") {
+  //        bacteria.add(new Bacteria(mouseX, mouseY));
+  //        allBacteria.add(bacteria.get(bacteria.size()-1));
+  //        print("bacteriaed");
+  //      }
+  //    }
+  //  }
+  //}
+  for (Button button : placeButtons) {
+    if (button.mouseOver()) {
+      areYouSure = true;
+      areYouSure(button);
+      //if (button.name == "Rain") {
+      //  rain = true;
+      //} else if (button.name == "Sunlight") {
+      //  sunlight = true;
+      //} else {
+      //  //else if (button.name == "Plant"){
+      //  //button.active = !button.active;
+      //  //} else {
+      //  button.click();
+      //}
+    }
+  }
 }
+
+void areYouSure( String miniGame ) {
+  fill(0);
+  rect(width/4, height/4, width/2, height/2);
+  fill(255);
+  text(placeButton.name, (int)(width/3), (int)(height/3));
+}
+
 
 void drawMap() {
   image(map, 0, 0);
