@@ -1,8 +1,10 @@
 class Player {
   String name;
-  String gender;
+  int gender; //0 is male, 1 is female
 
   Player() {
+    name = "Bob";
+    gender = 0;
   }
 
   Player(String name, int gender) {
@@ -14,17 +16,8 @@ class Player {
     name = next;
   }
   
-  void setGender(int num) {
-    if (num == 1) {
-      gender = "Male";
-    } else if (num == 2) {
-      gender = "Female";
-    } else {
-      gender = "Other";
-    }
-  }
    
-  void setGender(String gen) {
+  void setGender(int gen) {
     gender = gen;
   }   
 }
